@@ -3,20 +3,27 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
 
 func main() {
-	/*
+
+	cmd := os.Args[0]
+
+	testEnv := len(cmd) > 1
+	scanner := &bufio.Scanner{}
+	if testEnv {
 		file, err := os.Open("1.in")
 		defer file.Close()
 		if err != nil {
 			log.Fatal(err)
 		}
-		scanner := bufio.NewScanner(file)
-	*/
-	scanner := bufio.NewScanner(os.Stdin)
+		scanner = bufio.NewScanner(file)
+	} else {
+		scanner = bufio.NewScanner(os.Stdin)
+	}
 	scanner.Split(bufio.ScanWords)
 	scanner.Scan()
 	numOfCases, _ := strconv.Atoi(scanner.Text())
